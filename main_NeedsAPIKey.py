@@ -6,9 +6,9 @@ import LLayerNeuralNet as llnn
 
 
 ### CONSTANTS ###
-LEARNING_RATE = 0.025
+LEARNING_RATE = 0.1
 NUM_ITERATIONS = 3000
-PRINT_COST = True
+PRINT_COST = False
 
 # Spotify API credentials
 CLIENT_ID = #your client id
@@ -55,14 +55,16 @@ y_train = y_train.T
 y_test = y_test.T
 
 #Model layers
-layers_dims = [X_train.shape[0], 7, 5, 2, 1] #  4-layer model
+layers_dims = [X_train.shape[0], 4,1] #  multi layer model
 
 #Create the model and iterate
 parameters, costs = llnn.L_layer_model(X_train, y_train, layers_dims, LEARNING_RATE, NUM_ITERATIONS, PRINT_COST)
 llnn.plot_costs(costs, LEARNING_RATE)
 
 #Use model to predict training set
+print("Using model to predict TRAINING set...")
 pred_train = llnn.predict(X_train, y_train, parameters)
 
 #Use model to predict test set
+print("Using model to predict TEST set...")
 pred_test = llnn.predict(X_test, y_test, parameters)
