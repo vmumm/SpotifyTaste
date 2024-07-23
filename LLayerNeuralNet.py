@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import copy
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
 
 
 def sigmoid(Z):
@@ -357,7 +360,17 @@ def predict(X, y, parameters):
     #print ("predictions: " + str(p))
     #print ("true labels: " + str(y))
     print("Accuracy: "  + str(np.sum((p == y)/m)))
-        
+    
+    # calculate AUC
+    auc = roc_auc_score(y.T, probas.T)
+    print('AUC: %.3f' % auc)
+    
+    #confusion matrix
+    # cm = confusion_matrix(y.T, p.T)
+    # cm_display = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=[0, 1])
+    # cm_display.plot()
+    # plt.show()
+
     return p
 
 
