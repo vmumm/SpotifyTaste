@@ -56,7 +56,7 @@ def prepare_dataset(csv_data, liked_songs):
     merged_liked = pd.merge(liked_df, csv_data, left_on='id', right_on='track_id', how='inner')
     
     # Sample random songs (not in liked songs)
-    random_songs = csv_data[~csv_data['track_id'].isin(liked_df['id'])].sample(n=len(merged_liked), random_state=42)
+    random_songs = csv_data[~csv_data['track_id'].isin(liked_df['id'])].sample(n=20000, random_state=42)
     random_songs['liked'] = 0
     
     # Combine datasets
